@@ -44,7 +44,7 @@ public class ReadExcelUtility {
 		return list;
 
 	}
-	public boolean writeExcelUtility(List<Customer> customerlist) throws IOException{
+	public void writeExcelUtility(List<Customer> customerlist) throws IOException{
 		XSSFWorkbook workbook = new XSSFWorkbook();
 		XSSFSheet sheet = workbook.createSheet("Report");
 		int rowcount =0;
@@ -60,13 +60,15 @@ public class ReadExcelUtility {
 
 		}
 		FileOutputStream outputstream = new FileOutputStream("Login_Report.xlsx");
-		return false;
+		workbook.write(outputStream);
 	}
 
 	public static void main(String args[]) throws IOException{
+		//Reading file 
 		ReadExcelUtility rd = new ReadExcelUtility();
 		List<Customer> output =rd.readExcelData();
-		System.out.println(rd.writeExcelUtility(output));
+		//writing new file location inside your project plz refresh your project .
+		rd.writeExcelUtility(output);
 	
 		
 	}
