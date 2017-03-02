@@ -41,14 +41,14 @@ public class LoginUtility {
 			driver.findElement(By.id("UserPwd")).sendKeys(customer.getPassword());
 			driver.findElement(By.id("btnLogin")).click();
 			Thread.sleep(8000);
-
-			if(driver.findElement(By.id("UserEmailWrongCombinationErrorMsg")).isEnabled())
-			{
+			try {
 				if(driver.findElement(By.id("UserEmailWrongCombinationErrorMsg")).isDisplayed()){			
 					driver.findElement(By.id("UserEmail")).clear();
 					driver.findElement(By.id("UserPwd")).clear();
 					finalCustomerList.add(new Customer(customer.getUserName(),customer.getPassword(),"Not Authenticate"));
 				}
+			
+				
 				else{
 					finalCustomerList.add(new Customer(customer.getUserName(),customer.getPassword(),"Authenicate"));
 					//TODO logout functionality
@@ -56,8 +56,15 @@ public class LoginUtility {
 					Thread.sleep(4000);
 
 				}
-
+				
+			
+			}catch (Exception e) {
+				// TODO: handle exception
 			}
+
+				
+
+			
 			
 
 		}
