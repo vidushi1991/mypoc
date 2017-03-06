@@ -51,7 +51,7 @@ public class ExcelUtility {
 	 */
 	public void writeExcel(List<Customer> customerList) throws IOException{
 		 	XSSFWorkbook workbook = new XSSFWorkbook();
-	        XSSFSheet sheet = workbook.createSheet("Report");
+	        XSSFSheet sheet = workbook.createSheet("Report.xlsx");
 	        int rowCount = 0;
 	        Row row1 = sheet.createRow(rowCount);
             row1.createCell(0).setCellValue("UserName");
