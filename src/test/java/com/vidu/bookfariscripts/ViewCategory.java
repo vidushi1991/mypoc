@@ -40,6 +40,19 @@ public class ViewCategory {
 		} catch (TimeoutException e) {
 			// TODO: handle exception
 		}
+		List<String> alphaFilter = Arrays.asList("A", "B", "C","D");
+		   if (driver.findElement(By.xpath("//div[@id='dirBlock']/div/p[1]")).equals(alphaFilter.get(0))) {
+			   System.out.println("your are on first page" );
+			   System.out.println(driver.findElement(By.xpath("//div[@id='dirBlock']/div/p[1]")));
+			
+		} else {
+			driver.get("http://www.bookfari.com/Categories");
+
+		}
+		   
+		  
+		   
+		   System.out.println("list" +alphaFilter);
 		  
 	}
 
