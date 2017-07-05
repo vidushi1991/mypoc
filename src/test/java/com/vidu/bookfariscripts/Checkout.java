@@ -3,58 +3,120 @@
  */
 package bookfariscripts;
 
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 /**
  * @author Vidushi Mishra
  *
  */
-public class Checkout {
-	WebDriver driver;
+public class Checkout extends Resources {
 	WebElement Select;
+	
+	
+
+
+	/*@BeforeClass
+	public void setUp() {
+
+		System.setProperty(browserDriver, driverpath);
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--start-maximized");
+		driver = new ChromeDriver( options );
+		driver.get(devUrl);
+
+	}*/
+	
 	@Test
-	public void checkoutTesting() throws InterruptedException
-	{
-		System.setProperty("webdriver.chrome.driver", "C://Users//Vidushi Mishra//workspace//Bookfari//Lib//chromedriver.exe");
-		driver = new ChromeDriver();
-		driver.get("https://dev.bookfari.com/");
-		driver.manage().window().maximize();
-		Thread.sleep(4000);
-		driver.findElement(By.xpath("//section[@id='headerWrapper']/section/div/div/nav/ul/li[5]/a/span")).click();
-		driver.findElement(By.id("UserEmail")).sendKeys("vidushi@clavax.us");
-		driver.findElement(By.id("UserPwd")).sendKeys("2wsx@WSX");
-		driver.findElement(By.id("btnLogin")).click();
-		Thread.sleep(4000);
-		driver.findElement(By.id("Searchbooks")).sendKeys("9780300111927");	
-		Thread.sleep(3000);
-		driver.findElement(By.id("btnSearch")).click();
-		Thread.sleep(3000);
-		driver.findElement(By.cssSelector("button[onclick^=AddToCart]")).click();
-		Thread.sleep(4000);
-		driver.findElement(By.xpath("//section[@id='bookTabs']/div/ul/li[2]/div[9]/div/button[2]")).click();
-		driver.findElement(By.id("cartBlock")).click();
-		driver.findElement(By.id("btndelivery")).click();
-		Thread.sleep(4000);
-		WebElement dropdown = driver.findElement(By.id("ddlShipTitle"));
-		Select dropdownoption = new Select(dropdown);
-		dropdownoption.selectByVisibleText("Miss.");
-		Thread.sleep(2000);
-		driver.findElement(By.id("btnShipContinue")).click();
-		Thread.sleep(4000);
-		WebElement carddropdown = driver.findElement(By.id("ddlSavedCards"));
-		Select selectcard = new Select(carddropdown);
-		selectcard.selectByVisibleText("MASTERCARD # 3897");
-		Thread.sleep(3000);
-		driver.findElement(By.id("btnComletePayment")).click();
-		Thread.sleep(3000);
-		driver.close();
-		System.out.println("Checkout Completed Successfullly");
+	public static void checkoutTesting() throws InterruptedException
+	{	
+		try {
+				
+				/*try {
+					driver.findElement(By.id("signInBtn")).click();
+					TakeScreenshot.getscreenshot(driver);
+					driver.findElement(By.id("UserEmail")).sendKeys(devUserName);
+					driver.findElement(By.id("UserPwd")).sendKeys(devPassword);
+					TakeScreenshot.getscreenshot(driver);
+					driver.findElement(By.id("btnLogin")).click();
+					TakeScreenshot.getscreenshot(driver);
+					Thread.sleep(4000);
+				} 
+				catch (Exception e) {
+					System.out.println("Login fails" +e.getMessage());
+					
+				}*/
+			
+			
+			
+			
+			/*driver.findElement(By.id("Searchbooks")).sendKeys(isbn);
+			TakeScreenshot.getscreenshot(driver);
+			Thread.sleep(3000);
+			driver.findElement(By.id("btnSearch")).click();
+			TakeScreenshot.getscreenshot(driver);
+			Thread.sleep(3000);*/
+			
+			
+			
+			/*driver.findElement(By.cssSelector(addToCartButton)).click();
+			TakeScreenshot.getscreenshot(driver);
+			Thread.sleep(4000);
+			*/
+			
+			
+			/*driver.findElement(By.xpath(goToCartButton)).click();
+			TakeScreenshot.getscreenshot(driver);*/
+			
+			
+			driver.findElement(By.id("cartBlock")).click();
+			TakeScreenshot.getscreenshot(driver);
+			driver.findElement(By.id("btndelivery")).click();
+			TakeScreenshot.getscreenshot(driver);
+			Thread.sleep(4000);
+			WebElement dropdown = driver.findElement(By.id("ddlShipTitle"));
+			Select dropdownoption = new Select(dropdown);
+			dropdownoption.selectByVisibleText("Miss.");
+			TakeScreenshot.getscreenshot(driver);
+			Thread.sleep(2000);
+			driver.findElement(By.id("btnShipContinue")).click();
+			TakeScreenshot.getscreenshot(driver);
+			Thread.sleep(4000);
+			WebElement carddropdown = driver.findElement(By.id("ddlSavedCards"));
+			Select selectcard = new Select(carddropdown);
+			selectcard.selectByIndex(2);
+			TakeScreenshot.getscreenshot(driver);
+			Thread.sleep(3000);
+			driver.findElement(By.id("btnComletePayment")).click();
+			TakeScreenshot.getscreenshot(driver);
+			Thread.sleep(4000);
+			WebDriverWait wait = new WebDriverWait(driver, 40);//wait for 40 sec.
+			String thanksPage =driver.getCurrentUrl();
+			Boolean element = wait.until(ExpectedConditions.urlMatches(thanksPage));
+			
+			
+			System.out.println("Checkout Completed Successfullly " + thanksPage);
 
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}		
+		
 
+	}
+	@AfterClass
+	public void tearDown() {
+		if (driver != null)
+			driver.quit();
 	}
 }
