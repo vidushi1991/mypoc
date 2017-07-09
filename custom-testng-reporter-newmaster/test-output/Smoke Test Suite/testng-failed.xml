@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="4" configfailurepolicy="continue" name="Failed suite [Smoke Test Suite]" parallel="tests">
+  <parameter name="os" value="windows"/>
+  <parameter name="driver_path" value="E:\\vidushi\\BookFari\\Lib\\chromedriver_win32 (1)\\chromedriver.exe"/>
+  <parameter name="expected_text" value="Hello There!"/>
+  <parameter name="driver" value="webdriver.chrome.driver"/>
+  <parameter name="os_version" value="7"/>
+  <listeners>
+    <listener class-name="samplereporter.HTMLReporter"/>
+    <listener class-name="utils.BaseTest"/>
+  </listeners>
+  <test name="Sample Test Class Windows7 Firefox 32.0(failed)" parallel="tests">
+    <parameter name="os" value="windows"/>
+    <parameter name="expected_text" value="Hello There!"/>
+    <parameter name="driver_path" value="E:\\vidushi\\BookFari\\Lib\\chromedriver_win32 (1)\\chromedriver.exe"/>
+    <parameter name="driver" value="webdriver.chrome.driver"/>
+    <parameter name="os_version" value="7"/>
+    <groups>
+      <run>
+        <include name="Smoke"/>
+        <exclude name="regression"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="uitests.smoke.SampleTestClass">
+        <methods>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+          <include name="testMethod" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- uitests.smoke.SampleTestClass -->
+    </classes>
+  </test> <!-- Sample Test Class Windows7 Firefox 32.0(failed) -->
+</suite> <!-- Failed suite [Smoke Test Suite] -->
